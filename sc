@@ -34,6 +34,14 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
+Rayfield:Notify({
+   Title = "cool",
+   Content = "Cool you inejcted this shit ass garbage",
+   Duration = 6.5,
+   Image = 13472993735,
+})
+
+
 local MainTab = Window:CreateTab("🏠 Home", 4483362458) -- Title, Image
 
 local Button = MainTab:CreateButton({
@@ -12870,5 +12878,39 @@ task.spawn(function()
 	minimizeHolder()
 	if IsOnMobile then notify("Unstable Device", "On mobile, Infinite Yield may have issues or features that are not functioning correctly.") end
 end)
+   end,
+})
+
+local Slider = MainTab:CreateSlider({
+   Name = "Walkspeed",
+   Range = {0, 500 },
+   Increment = 1,
+   Suffix = "idk walk quick?",
+   CurrentValue = 16,
+   Flag = "freaky", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        game.Players.LocalPlayer.character.humanoid.WalkSpeed = (Value)
+   end,
+})
+
+local Dropdown = MainTab:CreateDropdown({
+   Name = "Nothing yet im special and dont want to cods",
+   Options = {"Nill","niggers"},
+   CurrentOption = {"Nill"},
+   MultipleOptions = false,
+   Flag = "tpnigga", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Options)
+        print("Not yet nigga")
+   end,
+})
+
+local OtherTab = Window:CreateTab("⚙️ Settings", nil) -- Title, Image
+
+local Section = OtherTab:CreateSection("Settings")
+
+local Button = OtherTab:CreateButton({
+   Name = "Destroy gui",
+   Callback = function()
+        Rayfield:Destroy()
    end,
 })
