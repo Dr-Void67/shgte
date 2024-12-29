@@ -87,6 +87,20 @@ end)
 local Button = MainTab:CreateButton({
    Name = "Print",
    Callback = function()
-        Print("Hi")
+        Print("somethings gonnna happen to your family")
+   end,
+})
+
+
+local OthersTab = Window:CreateTab("Aimbot", Nil)
+
+
+local Section = OthersTab:CreateSection("Aimbots")
+
+
+local Button = OthersTab:CreateButton({
+   Name = "Arsenal Sient Aim",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
    end,
 })
