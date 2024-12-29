@@ -36,8 +36,6 @@ local Window = Rayfield:CreateWindow({
 
 local MainTab = Window:CreateTab("🏠 Home", 4483362458) -- Title, Image
 
-local Section = MainTab:CreateSection("Troll shit")
-
 local Button = Tab:CreateButton({
    Name = "Open the coo little flinger",
    Callback = function()
