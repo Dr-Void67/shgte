@@ -41,57 +41,52 @@ Rayfield:Notify({
    Image = 13472993735,
 })
 
+local MainTab = Window:CreateTab("Home", Nil) -- Title, Image
 
-local MainTab = Window:CreateTab("🏠 Home", 4483362458) -- Title, Image
+local Section = MainTab:CreateSection("Home shit")
+
+local Slider = MainTab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {0, 1000},
+   Increment = 1,
+   Suffix = "run quick",
+   CurrentValue = 16,
+   Flag = "wewqewe", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+    end,
+})
+
+local Slider = MainTab:CreateSlider({
+   Name = "JumpPower",
+   Range = {0, 1000},
+   Increment = 1,
+   Suffix = "jump biggg",
+   CurrentValue = 16,
+   Flag = "wwwwww", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+    end,
+})
 
 local Button = MainTab:CreateButton({
- 
-local Dropdown = MainTab:CreateDropdown({
-   Name = "Nothing yet im special and dont want to cods",
-   Options = {"Nill","niggers"},
-   CurrentOption = {""},
-   MultipleOptions = false,
-   Flag = "tpnigga", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Options)
-        print("Not yet nigga")
-   end,
-})
-
-local OtherTab = Window:CreateTab("⚙️ Settings", nil) -- Title, Image
-
-local Section = OtherTab:CreateSection("Settings")
-
-local Button = OtherTab:CreateButton({
-   Name = "Destroy gui",
+   Name = "Inf jump",
    Callback = function()
-        Rayfield:Destroy()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
    end,
 })
 
-local EwTab = Window:CreateTab("Aim menus", nil)
-
-local Section = EwTab:CreateSection("Aims")
-
-local Button = EwTab:CreateButton({
-   Name = "OpenAimbot",
+local Button = MainTab:CreateButton({
+   Name = "Print",
    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ttwizz/Open-Aimbot/master/source.lua", true))()
+        Print("Hi")
    end,
 })
-
-local EwTab = Window:CreateTab("Local PLayer", nil)
-
-local Section = EwTab:CreateSection("Localplayer")
-
-local Slider = EwTab:CreateSlider({
-   Name = "Walkspeed",
-   Range = {0, 500 },
-   Increment = 1,
-   Suffix = "idk walk quick?",
-   CurrentValue = 16,
-   Flag = "freaky", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
-   end,
-})
-
