@@ -104,3 +104,10 @@ local Button = OthersTab:CreateButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
    end,
 })
+
+local Button = OthersTab:CreateButton({
+   Name = "Arsenal ESP",
+   Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
+   end,
+})
