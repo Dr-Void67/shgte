@@ -36,7 +36,7 @@ local Window = Rayfield:CreateWindow({
 
 local MainTab = Window:CreateTab("🏠 Home", 4483362458) -- Title, Image
 
-local Button = Tab:CreateButton({
+local Button = MainTab:CreateButton({
    Name = "Open the coo little flinger",
    Callback = function()
    if IY_LOADED and not _G.IY_DEBUG == true then
