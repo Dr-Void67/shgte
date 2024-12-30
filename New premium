@@ -84,3 +84,31 @@ Section:Button({
           game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
         end,
       }, "WalkspeedSlider")
+
+      Section:Slider({
+        Name = "Jump Power",
+        Default = 16,
+        Minimum = 0,
+        Maximum = 400,
+        DisplayMethod = "Percent",
+        Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+        end,
+      }, "JumpPowerslider")
+
+      local TabGroup = Window:TabGroup()
+
+      local Tab = TabGroup:Tab({
+          Name = "Misc"
+        })
+      
+        local Section = Tab:Section({
+          Side = "Left"
+        })
+    
+        Section:Button({
+          Name = "Inf Yeild", -- added the comma and the = sign
+          Callback = function() 
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/insy%20eild"))()
+          end -- removed the comma
+        })
