@@ -74,9 +74,13 @@ Section:Button({
         Side = "Left"
       })
 
-      Section:Button({
-        Name = "ESP (NOT MY SCRIPT)", -- added the comma and the = sign
-        Callback = function() 
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/universal%20esp"))()
-        end -- removed the comma
-      })
+      sections.MainSection1:Slider({
+        Name = "Walkspeed",
+        Default = 16,
+        Minimum = 0,
+        Maximum = 400,
+        DisplayMethod = "Percent",
+        Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+        end,
+      }, "WalkspeedSlider")
