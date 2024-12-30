@@ -74,23 +74,9 @@ Section:Button({
         Side = "Left"
       })
 
-      local TabGroup = Window:TabGroup()
-
-      local Tab = TabGroup:Tab({
-          Name = "Rage Bot"
-        })
-      
-        local Section = Tab:Section({
-          Side = "Left"
-        })
-
-        local TabGroup = Window:TabGroup()
-
-        local Tab = TabGroup:Tab({
-            Name = "Legit Bot"
-          })
-        
-          local Section = Tab:Section({
-            Side = "Left"
-          })
-      
+      Section:Button({
+        Name = "ESP (NOT MY SCRIPT)", -- added the comma and the = sign
+        Callback = function() 
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/universal%20esp"))()
+        end -- removed the comma
+      })
