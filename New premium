@@ -17,7 +17,7 @@ local Window = MacLib:Window({
     Title = "Lok1.gay Premium Invoker",
     Subtitle = "Paid | V1.00 Beta",
     Size = UDim2.fromOffset(868, 650),
-    DragStyle = 1,
+    DragStyle = 2,
     DisabledWindowControls = {},
     ShowUserInfo = true,
     Keybind = Enum.KeyCode.RightShift,
@@ -63,3 +63,34 @@ Section:Button({
           loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/universal%20esp"))()
       end -- removed the comma
     })
+
+    local TabGroup = Window:TabGroup()
+
+    local Tab = TabGroup:Tab({
+        Name = "Local Player"
+      })
+    
+      local Section = Tab:Section({
+        Side = "Left"
+      })
+
+      local TabGroup = Window:TabGroup()
+
+      local Tab = TabGroup:Tab({
+          Name = "Rage Bot"
+        })
+      
+        local Section = Tab:Section({
+          Side = "Left"
+        })
+
+        local TabGroup = Window:TabGroup()
+
+        local Tab = TabGroup:Tab({
+            Name = "Legit Bot"
+          })
+        
+          local Section = Tab:Section({
+            Side = "Left"
+          })
+      
