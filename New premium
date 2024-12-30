@@ -14,8 +14,8 @@ local function b(b)return b()end;local function b(b)return b()end;local function
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 
 local Window = MacLib:Window({
-    Title = "Lok1.gay Premium Invoker",
-    Subtitle = "Paid | V1.00 Beta",
+    Title = "Lok1.gay Invoker",
+    Subtitle = "Free | V1.00 Beta",
     Size = UDim2.fromOffset(868, 650),
     DragStyle = 2,
     DisabledWindowControls = {},
@@ -33,7 +33,7 @@ setclipboard ("https://discord.gg/pRxEDB8HVW")
 local TabGroup = Window:TabGroup()
 
 local Tab = TabGroup:Tab({
-    Name = "some tab man"
+    Name = "Aimbots"
   })
 
   local Section = Tab:Section({
@@ -44,6 +44,13 @@ Section:Button({
     Name = "Silent AIM(NOT MY SCRIPT I CANT CODE FOR SHIT)", -- added the comma and the = sign
     Callback = function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
+    end -- removed the comma
+  })
+
+  Section:Button({
+    Name = "AimBot menu", -- added the comma and the = sign
+    Callback = function() 
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/ttwizz/Open-Aimbot/master/source.lua", true))()
     end -- removed the comma
   })
 
