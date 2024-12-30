@@ -64,6 +64,14 @@ Section:Button({
       end -- removed the comma
     })
 
+    Section:Button({
+      Name = "NAme ESP", -- added the comma and the = sign
+      Callback = function() 
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
+      end -- removed the comma
+    })
+
+
     local TabGroup = Window:TabGroup()
 
     local Tab = TabGroup:Tab({
