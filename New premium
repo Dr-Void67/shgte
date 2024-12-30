@@ -26,10 +26,10 @@ local Window = MacLib:Window({
 
 Window:Notify({
     Title = "Lok1 was loaded!",
-    Description = "Press LeftShift to minimize it",
+    Description = "Press LeftShift to minimize it discord invite copied to keyboard",
     Lifetime = 10
 })
-
+setclipboard ("https://discord.gg/pRxEDB8HVW")
 local TabGroup = Window:TabGroup()
 
 local Tab = TabGroup:Tab({
@@ -48,8 +48,8 @@ Section:Button({
   })
 
   Section:Button({
-    Name = "Silent AIM", -- added the comma and the = sign
+    Name = "ESP", -- added the comma and the = sign
     Callback = function() 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/universal%20esp"))()
     end -- removed the comma
   })
