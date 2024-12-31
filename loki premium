@@ -1,113 +1,197 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f02929ff218b5f1ee2bb9e3b8e8d4c7c.lua"))()
 
-local Window = Rayfield:CreateWindow({
-       Name = "Lok1.gay Premium Invoker",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Lok1.gay Premium",
-   LoadingSubtitle = "made by cyn",
-   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
-
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
-   },
-
-   Discord = {
-      Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "p9GaSBEZ5K", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
-
-   KeySystem = true, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Key sys",
-      Subtitle = "Key System",
-      Note = "check dms for key", -- Use this to tell the user how to get a key
-      FileName = "3343213314443124343333545566665365", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Lok1-PRED#23F%"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
+local Window = MacLib:Window({
+    Title = "Lok1.gay Premium Invoker",
+    Subtitle = "Paid | V1.00 Beta",
+    Size = UDim2.fromOffset(868, 650),
+    DragStyle = 2,
+    DisabledWindowControls = {},
+    ShowUserInfo = true,
+    Keybind = Enum.KeyCode.RightShift,
+    AcrylicBlur = true,
 })
 
-Rayfield:Notify({
-   Title = "nigger",
-   Content = "Cool you inejcted this shit ass garbage but its coll ur an admin",
-   Duration = 6.5,
-   Image = 13472993735,
+Window:Notify({
+    Title = "Lok1 was loaded!",
+    Description = "Press LeftShift to minimize it discord invite copied to keyboard",
+    Lifetime = 10
 })
+setclipboard ("https://discord.gg/pRxEDB8HVW")
+local TabGroup = Window:TabGroup()
 
-local MainTab = Window:CreateTab("Home", Nil) -- Title, Image
+local Tab = TabGroup:Tab({
+    Name = "Ragebot"
+  })
 
-local Section = MainTab:CreateSection("Home shit")
+  local Section = Tab:Section({
+    Side = "Left"
+  })
 
-local Slider = MainTab:CreateSlider({
-   Name = "WalkSpeed",
-   Range = {0, 1000},
-   Increment = 1,
-   Suffix = "run quick",
-   CurrentValue = 16,
-   Flag = "wewqewe", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
-    end,
-})
-
-local Slider = MainTab:CreateSlider({
-   Name = "JumpPower",
-   Range = {0, 1000},
-   Increment = 1,
-   Suffix = "jump biggg",
-   CurrentValue = 16,
-   Flag = "wwwwww", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-          game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
-    end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Inf jump",
-   Callback = function()
-        --[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
-local InfiniteJumpEnabled = true
-game:GetService("UserInputService").JumpRequest:connect(function()
-	if InfiniteJumpEnabled then
-		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-	end
-end)
-   end,
-})
-
-local Button = MainTab:CreateButton({
-   Name = "Print",
-   Callback = function()
-        Print("somethings gonnna happen to your family")
-   end,
-})
-
-
-local OthersTab = Window:CreateTab("Aimbot", Nil)
-
-
-local Section = OthersTab:CreateSection("Aimbots")
-
-
-local Button = OthersTab:CreateButton({
-   Name = "Arsenal Sient Aim",
-   Callback = function()
+Section:Button({
+    Name = "Silent AIM(NOT MY SCRIPT I CANT CODE FOR SHIT)", -- added the comma and the = sign
+    Callback = function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
-   end,
-})
+    end -- removed the comma
+  })
 
-local Button = OthersTab:CreateButton({
-   Name = "Arsenal ESP",
-   Callback = function()
+  Section:Button({
+    Name = "AimBot menu", -- added the comma and the = sign
+    Callback = function() 
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/ttwizz/Open-Aimbot/master/source.lua", true))()
+    end -- removed the comma
+  })
+
+  Section:Button({
+    Name = "Give all guns 999 ammo NOT TOGGLEABLE", -- added the comma and the = sign
+    Callback = function() 
+      game:GetService("ReplicatedStorage").Weapons.AA12.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["ABS Rifle"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.AK47.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.AKM.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["AR-PDW"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.AUG.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.AWP.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Acid Spitter"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Arm Cannon"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Armament.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Autobow.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.BAR.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.BH10.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Barrett.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Baseball Launcher"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Battle Axe"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Blunderbuss.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["DB Chauchat"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["DB Shotgun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.DBS.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Darkheart.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Deagle.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Dispenser.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Dragunov.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Dual LCRs"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Dual Shotguns"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Dual Volcanics"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.EM249.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Electric Revolver"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Explosive Barrel"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.FAMAS.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["FMG-9"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["FN FAL"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Falkor.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Firebrand.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Firework Launcher"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Flamethrower.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["G-18"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["G-19X"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["G-21"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.G11.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.G3.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.G36.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.G3SG1.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Galil.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Gatling Gun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Ghostwalker.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Golden Bow"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Golden Gun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Golden Hush Puppy"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Golden Musket"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Grease Gun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Handcannon.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Henry Rifle"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Hi-Power"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Hush Puppy"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Ice Stars"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Inertial Shotgun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Kolibri.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Kritzkrieg.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.L86A3.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Laser Rifle"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Lever Shotgun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Lightning Cannon"].Auto.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Literal Gun"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["Little Tom"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.Luger.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["M1 Garand"].Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons.M14.Ammo.Value = 999
+      game:GetService("ReplicatedStorage").Weapons["M14 EBR"].Ammo.Value = 999
+    end -- removed the comma
+  })
+
+
+  local TabGroup = Window:TabGroup()
+
+  local Tab = TabGroup:Tab({
+      Name = "Visuals"
+    })
+  
+    local Section = Tab:Section({
+      Side = "Left"
+    })
+
+    Section:Button({
+      Name = "ESP (NOT MY SCRIPT)", -- added the comma and the = sign
+      Callback = function() 
+          loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/universal%20esp"))()
+      end -- removed the comma
+    })
+
+    Section:Button({
+      Name = "NAme ESP", -- added the comma and the = sign
+      Callback = function() 
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
-   end,
-})
+      end -- removed the comma
+    })
+
+
+    local TabGroup = Window:TabGroup()
+
+    local Tab = TabGroup:Tab({
+        Name = "Local Player"
+      })
+    
+      local Section = Tab:Section({
+        Side = "Left"
+      })
+
+      Section:Slider({
+        Name = "Walkspeed",
+        Default = 16,
+        Minimum = 0,
+        Maximum = 400,
+        DisplayMethod = "Percent",
+        Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+        end,
+      }, "WalkspeedSlider")
+
+      Section:Slider({
+        Name = "Jump Power",
+        Default = 16,
+        Minimum = 0,
+        Maximum = 400,
+        DisplayMethod = "Percent",
+        Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+        end,
+      }, "JumpPowerslider")
+
+      
+
+      local TabGroup = Window:TabGroup()
+
+      local Tab = TabGroup:Tab({
+          Name = "Misc"
+        })
+      
+        local Section = Tab:Section({
+          Side = "Left"
+        })
+    
+        Section:Button({
+          Name = "Inf Yeild", -- added the comma and the = sign
+          Callback = function() 
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/insy%20eild"))()
+          end -- removed the comma
+        })
