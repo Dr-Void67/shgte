@@ -31,9 +31,9 @@ local Tab = TabGroup:Tab({
   })
 
 Section:Button({
-    Name = "Silent AIM", -- added the comma and the = sign
+    Name = "Hitbox Expander", -- added the comma and the = sign
     Callback = function() 
-        print("Fuck you and wait for the next update")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
     end -- removed the comma
   })
 
@@ -231,7 +231,7 @@ Section:Button({
     })
 
     Section:Button({
-      Name = "NAme ESP", -- added the comma and the = sign
+      Name = "Name ESP", -- added the comma and the = sign
       Callback = function() 
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
       end -- removed the comma
