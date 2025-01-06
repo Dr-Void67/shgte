@@ -19,6 +19,7 @@ Window:Notify({
     Lifetime = 10
 })
 setclipboard ("https://discord.gg/pRxEDB8HVW")
+
 local TabGroup = Window:TabGroup()
 
 local Tab = TabGroup:Tab({
@@ -30,95 +31,147 @@ local Tab = TabGroup:Tab({
   })
 
 Section:Button({
-    Name = "Silent AIM(NOT MY SCRIPT I CANT CODE FOR SHIT)", -- added the comma and the = sign
+    Name = "Hitbox Expander", -- added the comma and the = sign
     Callback = function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/Silent%20Aim"))()
     end -- removed the comma
   })
 
   Section:Button({
-    Name = "AimBot menu", -- added the comma and the = sign
+    Name = "AimBot NO menu", -- added the comma and the = sign
     Callback = function() 
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/ttwizz/Open-Aimbot/master/source.lua", true))()
+		local Camera = workspace.CurrentCamera
+		local Players = game:GetService("Players")
+		local RunService = game:GetService("RunService")
+		local UserInputService = game:GetService("UserInputService")
+		local TweenService = game:GetService("TweenService")
+		local LocalPlayer = Players.LocalPlayer
+		local Holding = false
+		
+		_G.AimbotEnabled = true
+		_G.TeamCheck = false -- If set to true then the script would only lock your aim at enemy team members.
+		_G.AimPart = "Head" -- Where the aimbot script would lock at.
+		_G.Sensitivity = 0 -- How many seconds it takes for the aimbot script to officially lock onto the target's aimpart.
+		
+		_G.CircleSides = 64 -- How many sides the FOV circle would have.
+		_G.CircleColor = Color3.fromRGB(255, 255, 255) -- (RGB) Color that the FOV circle would appear as.
+		_G.CircleTransparency = 0.7 -- Transparency of the circle.
+		_G.CircleRadius = 80 -- The radius of the circle / FOV.
+		_G.CircleFilled = false -- Determines whether or not the circle is filled.
+		_G.CircleVisible = true -- Determines whether or not the circle is visible.
+		_G.CircleThickness = 0 -- The thickness of the circle.
+		
+		local FOVCircle = Drawing.new("Circle")
+		FOVCircle.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+		FOVCircle.Radius = _G.CircleRadius
+		FOVCircle.Filled = _G.CircleFilled
+		FOVCircle.Color = _G.CircleColor
+		FOVCircle.Visible = _G.CircleVisible
+		FOVCircle.Radius = _G.CircleRadius
+		FOVCircle.Transparency = _G.CircleTransparency
+		FOVCircle.NumSides = _G.CircleSides
+		FOVCircle.Thickness = _G.CircleThickness
+		
+		local function GetClosestPlayer()
+			local MaximumDistance = _G.CircleRadius
+			local Target = nil
+		
+			for _, v in next, Players:GetPlayers() do
+				if v.Name ~= LocalPlayer.Name then
+					if _G.TeamCheck == true then
+						if v.Team ~= LocalPlayer.Team then
+							if v.Character ~= nil then
+								if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+									if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+										local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+										local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+										
+										if VectorDistance < MaximumDistance then
+											Target = v
+										end
+									end
+								end
+							end
+						end
+					else
+						if v.Character ~= nil then
+							if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+								if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+									local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+									local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+									
+									if VectorDistance < MaximumDistance then
+										Target = v
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		
+			return Target
+		end
+		
+		UserInputService.InputBegan:Connect(function(Input)
+			if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+				Holding = true
+			end
+		end)
+		
+		UserInputService.InputEnded:Connect(function(Input)
+			if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+				Holding = false
+			end
+		end)
+		
+		RunService.RenderStepped:Connect(function()
+			FOVCircle.Position = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+			FOVCircle.Radius = _G.CircleRadius
+			FOVCircle.Filled = _G.CircleFilled
+			FOVCircle.Color = _G.CircleColor
+			FOVCircle.Visible = _G.CircleVisible
+			FOVCircle.Radius = _G.CircleRadius
+			FOVCircle.Transparency = _G.CircleTransparency
+			FOVCircle.NumSides = _G.CircleSides
+			FOVCircle.Thickness = _G.CircleThickness
+		
+			if Holding == true and _G.AimbotEnabled == true then
+				TweenService:Create(Camera, TweenInfo.new(_G.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, GetClosestPlayer().Character[_G.AimPart].Position)}):Play()
+			end
+		end)
     end -- removed the comma
   })
 
   Section:Button({
-    Name = "Give all guns 999 ammo NOT TOGGLEABLE", -- added the comma and the = sign
+    Name = "turn on gun mods NONTOGGLEABLE", -- added the comma and the = sign
     Callback = function() 
-      game:GetService("ReplicatedStorage").Weapons.AA12.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["ABS Rifle"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.AK47.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.AKM.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["AR-PDW"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.AUG.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.AWP.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Acid Spitter"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Arm Cannon"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Armament.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Autobow.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.BAR.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.BH10.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Barrett.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Baseball Launcher"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Battle Axe"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Blunderbuss.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["DB Chauchat"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["DB Shotgun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.DBS.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Darkheart.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Deagle.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Dispenser.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Dragunov.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Dual LCRs"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Dual Shotguns"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Dual Volcanics"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.EM249.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Electric Revolver"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Explosive Barrel"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.FAMAS.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["FMG-9"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["FN FAL"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Falkor.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Firebrand.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Firework Launcher"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Flamethrower.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["G-18"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["G-19X"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["G-21"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.G11.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.G3.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.G36.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.G3SG1.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Galil.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Gatling Gun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Ghostwalker.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Golden Bow"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Golden Gun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Golden Hush Puppy"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Golden Musket"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Grease Gun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Handcannon.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Henry Rifle"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Hi-Power"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Hush Puppy"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Ice Stars"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Inertial Shotgun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Kolibri.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Kritzkrieg.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.L86A3.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Laser Rifle"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Lever Shotgun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Lightning Cannon"].Auto.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Literal Gun"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["Little Tom"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.Luger.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["M1 Garand"].Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons.M14.Ammo.Value = 999
-      game:GetService("ReplicatedStorage").Weapons["M14 EBR"].Ammo.Value = 999
+      for i, weapon in next, game:GetService("ReplicatedStorage").Weapons:GetChildren() do
+        if weapon:FindFirstChild("Ammo") then
+          weapon.Ammo.Value = 999
+        end
+        if weapon:FindFirstChild("FireRate") then
+          weapon.FireRate.Value = 0.02 -- the minimum value, really fast
+        end
+        if weapon:FindFirstChild("RecoilControl") then
+          weapon.RecoilControl.Value = 0
+        end
+        if weapon:FindFirstChild("Auto") then
+          weapon.Auto.Value = true
+        end
+        if weapon:FindFirstChild("EquipTime") then
+          weapon.EquipTime.Value = 0
+      end
+      if weapon:FindFirstChild("MaxSpread") then
+        weapon.MaxSpread.Value = 0
+      end
+      if weapon:FindFirstChild("Spread") then
+        weapon.Spread.Value = 0
+      end
+        wait() -- added the wait
+      end
     end -- removed the comma
   })
-
 
   local TabGroup = Window:TabGroup()
 
@@ -131,16 +184,43 @@ Section:Button({
     })
 
     Section:Button({
-      Name = "ESP (NOT MY SCRIPT)", -- added the comma and the = sign
+      Name = "Name ESP", -- added the comma and the = sign
       Callback = function() 
-          loadstring(game:HttpGet("https://raw.githubusercontent.com/Dr-Void67/shgte/refs/heads/main/universal%20esp"))()
-      end -- removed the comma
-    })
+        --- Tut
+ 
+local esp_settings = { ---- table for esp settings 
+textsize = 8,
+colour = 255,255,255
+}
 
-    Section:Button({
-      Name = "NAme ESP", -- added the comma and the = sign
-      Callback = function() 
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
+local gui = Instance.new("BillboardGui")
+local esp = Instance.new("TextLabel",gui) ---- new instances to make the billboard gui and the textlabel
+
+
+
+gui.Name = "Cracked esp"; ---- properties of the esp
+gui.ResetOnSpawn = false
+gui.AlwaysOnTop = true;
+gui.LightInfluence = 0;
+gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+esp.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+esp.Text = ""
+esp.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001);
+esp.BorderSizePixel = 4;
+esp.BorderColor3 = Color3.new(esp_settings.colour)
+esp.BorderSizePixel = 0
+esp.Font = "GothamSemibold"
+esp.TextSize = esp_settings.textsize
+esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
+
+game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
+for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+    if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("Cracked esp")==nil  then -- craeting checks for team check, local player etc
+        esp.Text = "{"..v.Name.."}"
+        gui:Clone().Parent = v.Character.Head
+end
+end
+end)
       end -- removed the comma
     })
 
@@ -168,7 +248,7 @@ Section:Button({
 
       Section:Slider({
         Name = "Jump Power",
-        Default = 16,
+        Default = 50,
         Minimum = 0,
         Maximum = 400,
         DisplayMethod = "Percent",
@@ -176,6 +256,17 @@ Section:Button({
           game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
         end,
       }, "JumpPowerslider")
+
+      Section:Slider({
+        Name = "Sigma Health slider",
+        Default = 16,
+        Minimum = 0,
+        Maximum = 400,
+        DisplayMethod = "Percent",
+        Callback = function(Value)
+          game.Players.LocalPlayer.Character.Humanoid.Health = (Value)
+        end,
+      }, "Healthslider")
 
       
 
