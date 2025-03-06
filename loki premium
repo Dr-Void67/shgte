@@ -1,4 +1,3 @@
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f02929ff218b5f1ee2bb9e3b8e8d4c7c.lua"))()
 
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 
